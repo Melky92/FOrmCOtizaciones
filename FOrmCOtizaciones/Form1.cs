@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace FOrmCOtizaciones
         private List<Item> mis_items;
         public Form1()
         {
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es");
             InitializeComponent();
             mis_items = new List<Item>();
             InicializarDatos("Datos.csv");
@@ -26,7 +28,7 @@ namespace FOrmCOtizaciones
 
         private void InicializarDatos(string path)
         {
-            string[] allLines = File.ReadAllLines(path);
+            string[] allLines = File.ReadAllLines(path,System.Text.Encoding.Default);
             foreach(string line in allLines)
             {
                 mis_items.Add(new Item(line));
@@ -34,26 +36,21 @@ namespace FOrmCOtizaciones
         }
         private void CargarGrilla()
         {
-            foreach(Item it in mis_items)
+            for(int i = 0;i<mis_items.Count;i++)
             {
+                Item it = mis_items[i];
                 int x = dataGridViewDatos.Rows.Add();
                 using (DataGridViewRow NewRow = dataGridViewDatos.Rows[x])
                 {
-                    NewRow.Cells[0].Value = it.Id.ToString();
+                    NewRow.Cells[0].Value = it.Id;
                     NewRow.Cells[1].Value = it.Descripcion;
                     NewRow.Cells[2].Value = it.Precio.ToString("F2");
                     NewRow.Cells[3].Value = it.Escogido;
-                    if(it.Requerido)
+
+                    if (it.Escogido)
                     {
-                        DataGridViewCell cell = NewRow.Cells[3];
-                        DataGridViewCheckBoxCell chkCell = cell as DataGridViewCheckBoxCell;
-                        chkCell.Value = true;
-                        chkCell.FlatStyle = FlatStyle.Flat;
-                        chkCell.Style.ForeColor = Color.DarkGray;
-                        cell.ReadOnly = true;
+                        Tickear(i);
                     }
-                    //NewRow.Cells[3].ReadOnly = it.Requerido;
-                    //dataGridViewDatos.Update();
                 }
             }
         }
@@ -69,72 +66,84 @@ namespace FOrmCOtizaciones
                     a += mis_items[i].Anual;
                 }
             }
-            labelTotal.Text = t.ToString("F2");
-            labelAnual.Text = a.ToString("F2");
+            labelTotal.Text = t.ToString("C2",CultureInfo.GetCultureInfo("en"));
+
+            labelAnual.Text = a.ToString("C2",CultureInfo.GetCultureInfo("en"));
         }
 
-        private void dataGridViewDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Despintar(DataGridViewCell Cell)
         {
-            /*if (e.ColumnIndex == 3)
+            DataGridViewCheckBoxCell chkCell = Cell as DataGridViewCheckBoxCell;
+            chkCell.Value = true;
+            chkCell.FlatStyle = FlatStyle.Flat;
+            chkCell.Style.ForeColor = Color.DarkGray;
+            Cell.ReadOnly = true;
+        }
+        private void Pintar(DataGridViewCell Cell)
+        {
+            DataGridViewCheckBoxCell chkCell = Cell as DataGridViewCheckBoxCell;
+            chkCell.Value = false;
+            chkCell.FlatStyle = FlatStyle.Standard;
+            chkCell.Style.ForeColor = Color.White;
+            Cell.ReadOnly = false;
+        }
+        private void Tickear(int x)
+        {
+            mis_items[x].Escogido = true;
+            dataGridViewDatos[0, x].Style.Font = new Font(dataGridViewDatos.DefaultCellStyle.Font, FontStyle.Bold);
+            dataGridViewDatos.Rows[x].DefaultCellStyle.BackColor = Color.FromArgb(240,240,240);
+            dataGridViewDatos[3, x].Value = true;
+            if (mis_items[x].Requerido)
             {
-                this.dataGridViewDatos.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                SumarTodo();
-            }*/
+                Despintar(dataGridViewDatos[3, x]);
+            }
         }
-
-        private void Mover(DataGridViewCell c1, DataGridViewCell c2)
+        private void DesTickear(int x)
         {
-            DataGridViewCheckBoxCell cb1 = c1 as DataGridViewCheckBoxCell;
-            DataGridViewCheckBoxCell cb2 = c2 as DataGridViewCheckBoxCell;
-            cb1.Value = cb2.Value;
-            cb1.FlatStyle = cb2.FlatStyle;
-            cb1.Style.ForeColor = cb2.Style.ForeColor;
-            c1.ReadOnly = c2.ReadOnly;
-        }
-        private void Intercambiar(int i,int j)
-        {
-            DataGridViewCell cell1 = dataGridViewDatos[3,i];
-            DataGridViewCell cell2 = dataGridViewDatos[3,j];
-            int x = dataGridViewDatos.Rows.Add();
-            DataGridViewCell aux = dataGridViewDatos[3, x];
-
-            Mover(aux, cell1);
-            Mover(cell1, cell2);
-            Mover(cell2, aux);
-            dataGridViewDatos.Rows.RemoveAt(x);
-        }
-
-        private bool SetTrue(int x)
-        {
-            string gr = mis_items[x].Grupo;
-            bool changed = false;
-            for (int i = 0; i < mis_items.Count; i++)
+            mis_items[x].Escogido = false;
+            dataGridViewDatos[0, x].Style.Font = new Font(dataGridViewDatos.DefaultCellStyle.Font, FontStyle.Regular);
+            dataGridViewDatos.Rows[x].DefaultCellStyle.BackColor = Color.White;
+            dataGridViewDatos[3, x].Value = false;
+            if (mis_items[x].Requerido)
             {
-                if (mis_items[i].Grupo == gr && i != x)
+                Pintar(dataGridViewDatos[3, x]);
+            }
+        }
+
+        private void SetTrue(int x)
+        {
+            Tickear(x);
+            if (mis_items[x].Grupo.Length > 0)
+            {
+                for (int i = 0; i < mis_items.Count; i++)
                 {
-                    if ((bool)dataGridViewDatos[3, i].Value)
+                    if (mis_items[i].Grupo == mis_items[x].Grupo && i != x)
                     {
-                        Intercambiar(i, x);
-                        changed = true;
+                        DesTickear(i);
                     }
                 }
             }
-            return changed;
         }
 
+        private void SetFalse(int x)
+        {
+            if(!mis_items[x].Requerido)
+            {
+                DesTickear(x);
+            }
+        }
         private void dataGridViewDatos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.ColumnIndex == 3 && !dataGridViewDatos[e.ColumnIndex,e.RowIndex].ReadOnly)
             {
                 bool isChecked = (bool)dataGridViewDatos[e.ColumnIndex, e.RowIndex].EditedFormattedValue;
-                bool changed = false;
-                if(mis_items[e.RowIndex].Grupo != "" && !isChecked)
+                if(!isChecked)
                 {
-                    changed = SetTrue(e.RowIndex);
+                    SetTrue(e.RowIndex);
                 }
-                if(!changed)
+                else
                 {
-                    dataGridViewDatos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = !isChecked;
+                    SetFalse(e.RowIndex);
                 }
                 dataGridViewDatos.EndEdit();
                 SumarTodo();
@@ -145,23 +154,23 @@ namespace FOrmCOtizaciones
         {
             for(int i = 0;i<mis_items.Count;i++)
             {
-                if (mis_items[i].Grupo.Length == 0)
+                if (mis_items[i].Grupo.Length == 0 || !mis_items[i].Requerido)
                 {
-                    dataGridViewDatos[3, i].Value = mis_items[i].Requerido;
+                    if(mis_items[i].Requerido)
+                    {
+                        SetTrue(i);
+                    }
+                    else
+                    {
+                        SetFalse(i);
+                    }
                 }
                 else
                 {
                     int mayor = (mis_items[i].Precio > mis_items[i + 1].Precio ? i : i + 1);
                     int menor = (mis_items[i].Precio < mis_items[i + 1].Precio ? i : i + 1);
-                    if (mis_items[i].Grupo.Length == 2)
-                    {
-                        dataGridViewDatos[3, mayor].Value = false;
-                        dataGridViewDatos[3, menor].Value = false;
-                    }
-                    else
-                    {
-                        SetTrue(menor);
-                    }
+                    SetTrue(menor);
+                    SetFalse(mayor);
 
                     i++;
                 }
@@ -175,21 +184,14 @@ namespace FOrmCOtizaciones
             {
                 if (mis_items[i].Grupo.Length == 0)
                 {
-                        dataGridViewDatos[3,i].Value = true;
+                    SetTrue(i);
                 }
                 else
                 {
                     int mayor = (mis_items[i].Precio > mis_items[i+1].Precio ? i : i+1);
                     int menor = (mis_items[i].Precio < mis_items[i+1].Precio ? i : i+1);
-                    if(mis_items[i].Grupo.Length == 2)
-                    {
-                        dataGridViewDatos[3, menor].Value = false;
-                        dataGridViewDatos[3, mayor].Value = true;
-                    }
-                    else
-                    {
-                        SetTrue(mayor);
-                    }
+                    SetTrue(mayor);
+                    SetFalse(menor);
 
                     i++;
                 }
