@@ -13,16 +13,16 @@ namespace FOrmCOtizaciones
             string[] values = line.Split(';');
             int i = 0;
             Requerido = values[i++] == "x";
-            Id = values[i++];
+            Id = System.Convert.ToInt32(values[i++]);
             Descripcion = values[i++];
             Grupo = values[i++];
             Dificultad = System.Convert.ToInt32(values[i++]);
-            Escogido = (values[i++] == "1");
+            Escogido = Requerido;i++;//(values[i++] == "1");
             Precio = System.Convert.ToDouble(values[i++]);
             Anual = System.Convert.ToDouble(values[i++]);
 
         }
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Descripcion { get; set; }
         public bool Escogido { get; set; }
         public double Precio { get; set; }
