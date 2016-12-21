@@ -1,0 +1,23 @@
+x;1;Desktop App;RR1;6;1;604,56;0
+;2;Web App;RR1;8;1;810,16;0
+x;3;Diseño logica interna;;14;1;1407,28;0
+x;4;Servidor propio;RR2;4;1;400,48;0
+;5;Servidor Foco;RR2;7;1;706,09;0
+x;6;Diseño interfaz Android;;7;1;706,16;0
+;7;Diseño interfaz IOS;;9;1;932,4;20
+;8;Diesño interfaz Windows Phone;;7;1;714,56;0
+x;9;Integracion Google Maps;;6;1;621,42;0
+x;10;Dominio;;5;1;517,55;0
+;11;Pagina Web;;3;1;305,76;0
+;12;Rastreo en tiempo Real;;8;1;815,52;0
+;13;App de rastreo;R1;3;1;300,81;0
+;14;App de rastreo Avanzada;R1;7;1;700,35;0
+;15;Publicidad propietaria;;5;1;509,75;0
+;16;Perfiles;R2;7;1;724,01;0
+;17;Perfiles Basicos;R2;5;1;506,65;0
+;18;Tarifa Estimada;;7;1;702,94;0
+;19;Recordatorios con Notificaciones;;4;1;400,44;0
+;20;Estadisticas;;7;1;734,93;0
+;21;Comentarios internos;;3;1;310,44;0
+;22;Perfiles secundarios (conductores);;3;1;309,9;0
+x;23;Dominio Anual;;0;0;100;200
