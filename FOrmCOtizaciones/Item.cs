@@ -19,6 +19,7 @@ namespace FOrmCOtizaciones
             Dificultad = System.Convert.ToInt32(values[i++]);
             Escogido = Requerido;i++;//(values[i++] == "1");
             Precio = System.Convert.ToDouble(values[i++]);
+            Anual = System.Convert.ToDouble(values[i++]);
 
         }
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace FOrmCOtizaciones
         public string Grupo { get; set; }
         public bool Requerido { get; set; }
         public int Dificultad { get; set; }
+        public double Anual { get; set; }
     }
 }
