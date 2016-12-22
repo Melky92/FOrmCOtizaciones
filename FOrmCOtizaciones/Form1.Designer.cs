@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.dataGridViewDatos = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.labelTotal = new System.Windows.Forms.Label();
             this.buttonMaximo = new System.Windows.Forms.Button();
@@ -40,10 +44,6 @@
             this.labelReducido = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonCargar = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,19 +59,47 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridViewDatos.Location = new System.Drawing.Point(15, 15);
-            this.dataGridViewDatos.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataGridViewDatos.Location = new System.Drawing.Point(11, 12);
+            this.dataGridViewDatos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewDatos.Name = "dataGridViewDatos";
-            this.dataGridViewDatos.Size = new System.Drawing.Size(718, 720);
+            this.dataGridViewDatos.RowHeadersVisible = false;
+            this.dataGridViewDatos.Size = new System.Drawing.Size(548, 594);
             this.dataGridViewDatos.TabIndex = 0;
             this.dataGridViewDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDatos_CellClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Item";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 66;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Detalle";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 84;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Precio";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 78;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Escogido";
+            this.Column4.Name = "Column4";
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(754, 220);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(566, 176);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 31);
             this.label1.TabIndex = 1;
@@ -81,20 +109,20 @@
             // 
             this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotal.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelTotal.Location = new System.Drawing.Point(912, 211);
-            this.labelTotal.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelTotal.Location = new System.Drawing.Point(684, 169);
+            this.labelTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(166, 39);
+            this.labelTotal.Size = new System.Drawing.Size(124, 31);
             this.labelTotal.TabIndex = 2;
             this.labelTotal.Text = "10000,00";
             this.labelTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // buttonMaximo
             // 
-            this.buttonMaximo.Location = new System.Drawing.Point(754, 70);
-            this.buttonMaximo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonMaximo.Location = new System.Drawing.Point(566, 56);
+            this.buttonMaximo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonMaximo.Name = "buttonMaximo";
-            this.buttonMaximo.Size = new System.Drawing.Size(324, 44);
+            this.buttonMaximo.Size = new System.Drawing.Size(243, 35);
             this.buttonMaximo.TabIndex = 3;
             this.buttonMaximo.Text = "Costo Máximo";
             this.buttonMaximo.UseVisualStyleBackColor = true;
@@ -102,10 +130,10 @@
             // 
             // buttonMinimo
             // 
-            this.buttonMinimo.Location = new System.Drawing.Point(754, 15);
-            this.buttonMinimo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonMinimo.Location = new System.Drawing.Point(566, 12);
+            this.buttonMinimo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonMinimo.Name = "buttonMinimo";
-            this.buttonMinimo.Size = new System.Drawing.Size(324, 44);
+            this.buttonMinimo.Size = new System.Drawing.Size(243, 35);
             this.buttonMinimo.TabIndex = 4;
             this.buttonMinimo.Text = "Costo Mínimo";
             this.buttonMinimo.UseVisualStyleBackColor = true;
@@ -115,8 +143,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(754, 267);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(566, 214);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 31);
             this.label2.TabIndex = 5;
@@ -126,20 +154,20 @@
             // 
             this.labelAnual.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAnual.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelAnual.Location = new System.Drawing.Point(912, 258);
-            this.labelAnual.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAnual.Location = new System.Drawing.Point(684, 206);
+            this.labelAnual.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAnual.Name = "labelAnual";
-            this.labelAnual.Size = new System.Drawing.Size(166, 39);
+            this.labelAnual.Size = new System.Drawing.Size(124, 31);
             this.labelAnual.TabIndex = 6;
             this.labelAnual.Text = "10000,00";
             this.labelAnual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // buttonRecomendado
             // 
-            this.buttonRecomendado.Location = new System.Drawing.Point(754, 126);
-            this.buttonRecomendado.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonRecomendado.Location = new System.Drawing.Point(566, 101);
+            this.buttonRecomendado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonRecomendado.Name = "buttonRecomendado";
-            this.buttonRecomendado.Size = new System.Drawing.Size(324, 44);
+            this.buttonRecomendado.Size = new System.Drawing.Size(243, 35);
             this.buttonRecomendado.TabIndex = 7;
             this.buttonRecomendado.Text = "Recomendado";
             this.buttonRecomendado.UseVisualStyleBackColor = true;
@@ -147,10 +175,10 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(756, 324);
-            this.buttonGuardar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonGuardar.Location = new System.Drawing.Point(567, 259);
+            this.buttonGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonGuardar.Name = "buttonGuardar";
-            this.buttonGuardar.Size = new System.Drawing.Size(322, 44);
+            this.buttonGuardar.Size = new System.Drawing.Size(242, 35);
             this.buttonGuardar.TabIndex = 8;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
@@ -160,10 +188,10 @@
             // 
             this.labelReducido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelReducido.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.labelReducido.Location = new System.Drawing.Point(914, 580);
-            this.labelReducido.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelReducido.Location = new System.Drawing.Point(686, 464);
+            this.labelReducido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelReducido.Name = "labelReducido";
-            this.labelReducido.Size = new System.Drawing.Size(166, 39);
+            this.labelReducido.Size = new System.Drawing.Size(124, 31);
             this.labelReducido.TabIndex = 11;
             this.labelReducido.Text = "10000,00";
             this.labelReducido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -173,8 +201,8 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(754, 589);
-            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label4.Location = new System.Drawing.Point(566, 471);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 20);
             this.label4.TabIndex = 10;
@@ -183,48 +211,20 @@
             // 
             // buttonCargar
             // 
-            this.buttonCargar.Location = new System.Drawing.Point(756, 380);
-            this.buttonCargar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonCargar.Location = new System.Drawing.Point(567, 304);
+            this.buttonCargar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCargar.Name = "buttonCargar";
-            this.buttonCargar.Size = new System.Drawing.Size(322, 44);
+            this.buttonCargar.Size = new System.Drawing.Size(242, 35);
             this.buttonCargar.TabIndex = 13;
             this.buttonCargar.Text = "Cargar";
             this.buttonCargar.UseVisualStyleBackColor = true;
             this.buttonCargar.Click += new System.EventHandler(this.buttonCargar_Click);
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Item";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 77;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Detalle";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 104;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Precio";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 98;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Escogido";
-            this.Column4.Name = "Column4";
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column4.Width = 126;
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 742);
+            this.ClientSize = new System.Drawing.Size(815, 611);
             this.Controls.Add(this.buttonCargar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.labelReducido);
@@ -237,8 +237,8 @@
             this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewDatos);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDatos)).EndInit();
