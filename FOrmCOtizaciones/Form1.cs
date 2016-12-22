@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,10 +16,24 @@ namespace FOrmCOtizaciones
     public partial class Form1 : Form
     {
         private List<Item> mis_items;
+        /*public string GetCSV(string url)
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+
+            StreamReader sr = new StreamReader(resp.GetResponseStream());
+            string results = sr.ReadToEnd();
+            sr.Close();
+
+            return results;
+        }*/
+        private int cotizaciones;
         public Form1()
         {
             //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es");
             InitializeComponent();
+            //string fileList = GetCSV("https://drive.google.com/open?id=0B6g7Rl6GNqj3MU1ReXBkOXAyX0k&output=csv");
+
             mis_items = new List<Item>();
             InicializarDatos("Datos.csv");
             CargarGrilla();
@@ -67,6 +82,7 @@ namespace FOrmCOtizaciones
                 }
             }
             labelTotal.Text = t.ToString("C2", CultureInfo.GetCultureInfo("en"));
+            labelReducido.Text = (t*0.60).ToString("C2", CultureInfo.GetCultureInfo("en"));
 
             labelAnual.Text = a.ToString("C2", CultureInfo.GetCultureInfo("en"));
         }
@@ -192,9 +208,58 @@ namespace FOrmCOtizaciones
                     int menor = (mis_items[i].Precio < mis_items[i + 1].Precio ? i : i + 1);
                     SetTrue(mayor);
                     SetFalse(menor);
-
                     i++;
                 }
+            }
+            SumarTodo();
+        }
+
+        private void buttonRecomendado_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < mis_items.Count; i++)
+            {
+                //if (mis_items[i].Grupo.Length == 0 || !mis_items[i].Recomendado)
+                {
+                    if (mis_items[i].Recomendado)
+                    {
+                        SetTrue(i);
+                    }
+                    else
+                    {
+                        SetFalse(i);
+                    }
+                }
+            }
+            SumarTodo();
+        }
+
+        private void buttonGuardar_Click(object sender, EventArgs e)
+        {
+            List<string> guardados = new List<string>();
+            foreach(Item it in mis_items)
+            {
+                if (it.Escogido)
+                {
+                    guardados.Add(it.Id + ";" + it.Descripcion + ";" + it.Precio.ToString());
+                }
+            }
+            System.IO.File.WriteAllLines(@"Cotizacion.csv", guardados);
+        }
+
+        private void buttonCargar_Click(object sender, EventArgs e)
+        {
+            string path = @"Cotizacion.csv";
+            string[] allLines = File.ReadAllLines(path, System.Text.Encoding.Default);
+            buttonMinimo_Click(sender, e);
+            foreach (string line in allLines)
+            {
+                SetTrue(mis_items.FindIndex(
+                delegate (Item it)
+                {
+                    return it.Id.Equals(line.Split(';')[0], StringComparison.Ordinal);
+                }));
+
+                //SetTrue(mis_items.IndexOf(line.Split(';')[0]));
             }
             SumarTodo();
         }

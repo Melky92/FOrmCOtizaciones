@@ -18,13 +18,14 @@ namespace FOrmCOtizaciones
             Grupo = values[i++];
             Dificultad = System.Convert.ToInt32(values[i++]);
             Escogido = (values[i++] == "1");
+            Recomendado = Escogido;
             Precio = System.Convert.ToDouble(values[i++]);
             Anual = System.Convert.ToDouble(values[i++]);
-
         }
         public string Id { get; set; }
         public string Descripcion { get; set; }
         public bool Escogido { get; set; }
+        public bool Recomendado { get; set; }
         public double Precio { get; set; }
         public string Grupo { get; set; }
         public bool Requerido { get; set; }
