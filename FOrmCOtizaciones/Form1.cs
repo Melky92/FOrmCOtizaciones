@@ -107,7 +107,7 @@ namespace FOrmCOtizaciones
         {
             mis_items[x].Escogido = true;
             dataGridViewDatos[0, x].Style.Font = new Font(dataGridViewDatos.DefaultCellStyle.Font, FontStyle.Bold);
-            dataGridViewDatos.Rows[x].DefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+            dataGridViewDatos.Rows[x].DefaultCellStyle.BackColor = Color.FromArgb(247, 247, 251);
             dataGridViewDatos[3, x].Value = true;
             if (mis_items[x].Requerido)
             {
