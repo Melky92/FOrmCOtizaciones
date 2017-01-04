@@ -41,6 +41,46 @@ namespace FOrmCOtizaciones
             dataGridViewDatos.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            int Sx = dataGridViewDatos.Location.X;
+            int Sy = dataGridViewDatos.Location.Y + dataGridViewDatos.Size.Height;
+            int Dx = 20;
+            int Dy = 20;
+            Point P = new Point(Sx, Sy + Dy);
+
+            buttonMinimo.Location = P;
+            P.Y += buttonMinimo.Size.Height + Dy;
+
+            buttonMaximo.Location = P;
+            P.Y += buttonMaximo.Size.Height + Dy;
+
+            buttonRecomendado.Location = P;
+
+            P.X = Sx + dataGridViewDatos.Size.Width - labelTotalMonto.Size.Width;
+            P.Y = Sy + Dy;
+
+            labelTotalMonto.Location = P;
+            P.Y += labelTotalMonto.Size.Height + Dy / 2;
+
+            labelAnualMonto.Location = P;
+            P.X -= labelAnual.Size.Width + Dx;
+
+            labelAnual.Location = P;
+            P.Y -= labelTotalMonto.Size.Height + Dy / 2;
+
+            labelTotal.Location = P;
+
+            P.X = Sx + dataGridViewDatos.Size.Width - buttonGuardar.Size.Width;
+            P.Y = Sy + + labelTotal.Size.Height + labelAnual.Size.Height + Dy*3;
+
+            buttonCargar.Location = P;
+            P.Y += buttonCargar.Height + Dy;
+
+            buttonGuardar.Location = P;
+
+        }
+
         private void InicializarDatos(string path)
         {
             string[] allLines = File.ReadAllLines(path, System.Text.Encoding.Default);
@@ -81,10 +121,10 @@ namespace FOrmCOtizaciones
                     a += mis_items[i].Anual;
                 }
             }
-            labelTotal.Text = t.ToString("C2", CultureInfo.GetCultureInfo("en"));
+            labelTotalMonto.Text = t.ToString("C2", CultureInfo.GetCultureInfo("en"));
             labelReducido.Text = (t*0.60).ToString("C2", CultureInfo.GetCultureInfo("en"));
 
-            labelAnual.Text = a.ToString("C2", CultureInfo.GetCultureInfo("en"));
+            labelAnualMonto.Text = a.ToString("C2", CultureInfo.GetCultureInfo("en"));
         }
 
         private void Despintar(DataGridViewCell Cell)
