@@ -1,23 +1,23 @@
-x;1a;Aplicación de Escritorio;RR1;6;1;604,56;0
-x;1b;Aplicación Web;RR1;8;0;810,16;0
-x;2;Diseño lógica interna;;14;1;1407,28;0
-x;3a;Servidor propio;RR2;4;1;400,48;0
-x;3b;Servidor Foco;RR2;7;0;706,09;0
-x;4;Diseño interfaz Android;;7;1;706,16;0
-;5;Diseño interfaz IOS;;9;1;932,4;20
-;6;Diesño interfaz Windows Phone;;7;0;714,56;0
-x;7;Integración Google Maps;;6;1;621,42;0
-x;8;Dominio;;5;1;517,55;0
-;9;Página Web;;3;1;305,76;0
-;10;Rastreo en tiempo Real;;8;1;815,52;0
-;11a;App de rastreo;R1;3;1;300,81;0
-;11b;App de rastreo Avanzada;R1;7;0;700,35;0
-;12;Publicidad propietaria;;5;0;509,75;0
-;13a;Perfiles;R2;7;1;724,01;0
-;13b;Perfiles Básicos;R2;5;0;506,65;0
-;14;Tarifa Estimada;;7;0;702,94;0
-;15;Recordatorios con Notificaciones;;4;0;400,44;0
-;16;Estadísticas;;7;0;734,93;0
-;17;Comentarios internos;;3;0;310,44;0
-;18;Perfiles secundarios (conductores);;3;1;309,9;0
-x;19;Dominio Anual;;0;1;100;200
+x;1a;Aplicación de Escritorio;RR1;6;1;601,73;0
+x;1b;Aplicación Web;RR1;8;0;803,02;0
+x;2;Diseño lógica interna;;14;1;1403,56;0
+x;3a;Servidor propio;RR2;5;1;501,24;0
+x;3b;Servidor Foco;RR2;8;0;803,94;0
+x;4;Diseño interfaz Android;;7;1;701,67;0
+;5;Diseño interfaz IOS;;9;1;901,77;20
+;6;Diesño interfaz Windows Phone;;7;0;703,34;0
+;7;Integración Google Maps;;6;1;602,57;0
+;8;Información de sucursales;;7;1;701,72;0
+;9a;Catálogo simple;R1;3;0;300,02;0
+;9b;Catálogo con pedidos;R1;7;1;702,16;0
+;10;Rastreo en tiempo Real;;8;0;800,34;0
+;11;App de rastreo;;3;0;300,93;0
+;12;Chat de atención al cliente;;3;0;300,19;0
+;13;Chat para recetas;;4;0;401,4;0
+;14a;Perfiles Redes Sociales;R2;7;0;701,38;0
+;14b;Perfiles Locales;R2;5;0;500,32;0
+;15;Tarifa Estimada;;7;0;702,7;0
+;16;Notificaciones ocasionales;;4;0;400,75;0
+;17;Recordatorio de remedios;;7;0;703,21;0
+;18;Promociones actualizables;;4;1;400,04;0
+;19;Perfiles secundarios (conductores);;3;0;301,23;0
